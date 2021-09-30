@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiCalculadora", "TP1Forms\MiCalculadora.csproj", "{34A4CF26-FE8E-485A-B4A5-4645C697BCF4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entidades", "BibliotecaClases\Entidades.csproj", "{DE060946-77C8-4DE0-8F4F-09E3E1EB87AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entidades", "Entidades\Entidades.csproj", "{DE060946-77C8-4DE0-8F4F-09E3E1EB87AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
