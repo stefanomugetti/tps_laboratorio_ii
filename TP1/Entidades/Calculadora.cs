@@ -9,7 +9,7 @@
         /// <returns>Retorna + si el operador es invalido, o el operador elegido, si es valido</returns>
         private static char ValidarOperador(char operador)
         {
-            char retorno;
+            char retorno = '+';
             switch (operador)
             {
                 case '-':
@@ -20,9 +20,6 @@
                     break;
                 case '/':
                     retorno = '/';
-                    break;
-                default:
-                    retorno = '+';
                     break;
             }
             return retorno;
@@ -50,10 +47,7 @@
                 case '*':
                     resultado = num1 * num2;
                     break;
-                case '/':
-                    if (num2.ToString() == "0")
-                        resultado = double.MinValue;
-
+                case '/':                   
                     resultado = num1 / num2;
                     break;
             }

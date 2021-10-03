@@ -14,9 +14,9 @@ namespace LaCalculadora
         /// <summary>
         /// Construye un numero inicializado en 0
         /// </summary>
-        public Operando()
+        public Operando():this(0)
         {
-            this.numero = 0;
+
         }
         /// <summary>
         /// Construye un operando con el valor pasado por parametro 
@@ -62,7 +62,7 @@ namespace LaCalculadora
         /// <returns>Retorna "valor invalido" si no se puede transformar o el numero transformado a binario, si se pudo</returns>
         public string DecimalBinario(string numDecimal)
         {
-            string binario = "Valor invalido";
+            string binario = numDecimal;
             int divisor=2;
             int numeroAbsoluto = 0;
             if (int.TryParse(numDecimal, out int numeroParseado))
@@ -84,7 +84,7 @@ namespace LaCalculadora
         /// <returns>Retorna "valor invalido" si no se puede transformar o el numero transformado a decimal, si se pudo</returns>
         public string BinarioDecimal(string binario)
         {
-            string resultadoString = "Valor invalido";
+            string resultadoString = binario;
             int residuo = 0;
             int exponente = 0;
             int resultado = 0;
@@ -117,6 +117,11 @@ namespace LaCalculadora
         }
         public static double operator /(Operando n1, Operando n2)
         {
+            if(n2.numero == 0)
+            {
+                return double.MinValue;
+            }
+
             return n1.numero / n2.numero;
         }
         /// <summary>

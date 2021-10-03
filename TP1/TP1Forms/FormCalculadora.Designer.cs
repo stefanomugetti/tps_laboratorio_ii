@@ -145,19 +145,15 @@ namespace MiCalculadora
             // 
             // lblResultado
             // 
-            this.lblResultado.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblResultado.AutoEllipsis = true;
-            this.lblResultado.BackColor = System.Drawing.Color.Transparent;
-            this.lblResultado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblResultado.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblResultado.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.lblResultado.Location = new System.Drawing.Point(12, 12);
+            this.lblResultado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblResultado.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblResultado.Location = new System.Drawing.Point(33, 9);
             this.lblResultado.Name = "lblResultado";
-            this.lblResultado.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblResultado.Size = new System.Drawing.Size(394, 32);
+            this.lblResultado.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblResultado.Size = new System.Drawing.Size(343, 25);
             this.lblResultado.TabIndex = 9;
-            this.lblResultado.Text = "0";
-            this.lblResultado.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblResultado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // FormCalculadora
             // 
