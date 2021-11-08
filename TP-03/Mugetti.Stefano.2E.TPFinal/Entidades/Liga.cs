@@ -7,7 +7,6 @@ namespace Entidades
     [Serializable]
     public static class Liga
     {
-
         static string nombre;
         static List<Equipo> equipos;
 
@@ -19,7 +18,6 @@ namespace Entidades
             Nombre = "Liga Argentina de Futbol";
             equipos = new List<Equipo>();
         }
-
 
         public static List<Equipo> ObtenerLista()
         {
@@ -114,6 +112,7 @@ namespace Entidades
         /// Realiza el hardcodeo validando que no se repita la carga de datos
         /// </summary>
         /// <returns></returns>
+        /// 
         public static bool Harcodeo()
         {
             if (!ExisteArchivo())
@@ -282,10 +281,13 @@ namespace Entidades
                 Liga.Equipos = IGuardar<Equipo>.CargarXML();
                 return true;
             }
-
-
             return false;
         }
+
+        /// <summary>
+        /// Busca si existe el archivo que corrobora si ya deserializ o no
+        /// </summary>
+        /// <returns>true si existe, de lo contrario false</returns>
         public static bool ExisteArchivo()
         {
             string folder = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\TP3\Harcodeo\";
@@ -296,6 +298,11 @@ namespace Entidades
                 return true;
             }
             return false;
+        }
+
+        public static void GuardarCambios()
+        {
+            IGuardar<Equipo>.GuardarXML(Liga.ObtenerLista());
         }
     }
 }

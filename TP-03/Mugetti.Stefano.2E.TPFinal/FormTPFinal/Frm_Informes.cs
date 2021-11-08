@@ -43,12 +43,12 @@ namespace FormTPFinal
                     informe.AppendLine($"Pie Habil:\nDerechos:{contadorDer}\tIzquierdos:{contadorIzq}");
                     informe.AppendLine($"Promedio Izquierdos:{cantidad / contadorIzq}\tPromedio Derechos:{cantidad / contadorDer}");
                     informe.AppendLine($"------------{DateTime.Now.ToString()}");
-                    Archivos<string>.Informes(informe.ToString());
+                    Archivos<string>.Informes(informe.ToString(),"Pie_Habil");
                 }
             }
             catch (Exception)
             {
-                Archivos<string>.Informes("Error al cargar datos");
+                Archivos<string>.Informes("Error al cargar datos","Error");
             }
         }
 
@@ -85,12 +85,12 @@ namespace FormTPFinal
                     informe.AppendLine($"Promedio:{promedio}");
                     informe.AppendLine();
                     informe.AppendLine($"------------{DateTime.Now.ToString()}");
-                    Archivos<string>.Informes(informe.ToString());
+                    Archivos<string>.Informes(informe.ToString(),"Peso");
                 }
             }
             catch (Exception)
             {
-                Archivos<string>.Informes("Error al cargar datos");
+                Archivos<string>.Informes("Error al cargar datos", "Error");
             }
         }
 
@@ -125,12 +125,12 @@ namespace FormTPFinal
                     informe.AppendLine($"Promedio:{promedio}");
                     informe.AppendLine();
                     informe.AppendLine($"------------{DateTime.Now.ToString()}");
-                    Archivos<string>.Informes(informe.ToString());
+                    Archivos<string>.Informes(informe.ToString(), "ValorJdr");
                 }
             }
             catch (Exception)
             {
-                Archivos<string>.Informes("Error al cargar datos");
+                Archivos<string>.Informes("Error al cargar datos", "Error");
             }
         }
 
@@ -168,12 +168,12 @@ namespace FormTPFinal
                     informe.AppendLine($"Promedio Mediocampistas:{cantidad / contadorArq}\tPromedio Delanteros:{cantidad / contadorDel}");
                     informe.AppendLine();
                     informe.AppendLine($"------------{DateTime.Now.ToString()}");
-                    Archivos<string>.Informes(informe.ToString());
+                    Archivos<string>.Informes(informe.ToString(),"Posicion");
                 }
             }
             catch (Exception)
             {
-                Archivos<string>.Informes("Error al cargar datos");
+                Archivos<string>.Informes("Error al cargar datos", "Error");
             }
         }
 
@@ -209,12 +209,12 @@ namespace FormTPFinal
                     informe.AppendLine($"Promedio:{promedio}");
                     informe.AppendLine();
                     informe.AppendLine($"------------{DateTime.Now.ToString()}");
-                    Archivos<string>.Informes(informe.ToString());
+                    Archivos<string>.Informes(informe.ToString(),"Valor");
                 }
             }
             catch (Exception)
             {
-                Archivos<string>.Informes("Error al cargar datos");
+                Archivos<string>.Informes("Error al cargar datos", "Error");
             }
 
         }
@@ -246,12 +246,12 @@ namespace FormTPFinal
                     informe.AppendLine($"Año de fundacion:\nMaximo:{maximo}\tMinimo:{minimo}");
                     informe.AppendLine();
                     informe.AppendLine($"------------{DateTime.Now.ToString()}");
-                    Archivos<string>.Informes(informe.ToString());
+                    Archivos<string>.Informes(informe.ToString(),"AñoFund");
                 }
             }
             catch (Exception)
             {
-                Archivos<string>.Informes("Error al cargar datos");
+                Archivos<string>.Informes("Error al cargar datos", "Error");
             }
         }
 
@@ -286,12 +286,12 @@ namespace FormTPFinal
                     informe.AppendLine($"Cantidad de jugadores:\nMaximo:{maximo}\tMinimo:{minimo}");
                     informe.AppendLine();
                     informe.AppendLine($"------------{DateTime.Now.ToString()}");
-                    Archivos<string>.Informes(informe.ToString());
+                    Archivos<string>.Informes(informe.ToString(),"Cant_Jdrs");
                 }
             }
             catch (Exception)
             {
-                Archivos<string>.Informes("Error al cargar datos");
+                Archivos<string>.Informes("Error al cargar datos", "Error");
             }
         }
 
@@ -328,12 +328,12 @@ namespace FormTPFinal
                     informe.AppendLine($"Promedio:{promedio}");
                     informe.AppendLine();
                     informe.AppendLine($"------------{DateTime.Now.ToString()}");
-                    Archivos<string>.Informes(informe.ToString());
+                    Archivos<string>.Informes(informe.ToString(),"Edad");
                 }
             }
             catch (Exception)
             {
-                Archivos<string>.Informes("Error al cargar datos");
+                Archivos<string>.Informes("Error al cargar datos", "Error");
             }
         }
 
@@ -369,12 +369,12 @@ namespace FormTPFinal
                     informe.AppendLine($"Promedio:{promedio}");
                     informe.AppendLine();
                     informe.AppendLine($"------------{DateTime.Now.ToString()}");
-                    Archivos<string>.Informes(informe.ToString());
+                    Archivos<string>.Informes(informe.ToString(),"Altura");
                 }
             }
             catch (Exception)
             {
-                Archivos<string>.Informes("Error al cargar datos");
+                Archivos<string>.Informes("Error al cargar datos", "Error");
             }
         }
         #endregion

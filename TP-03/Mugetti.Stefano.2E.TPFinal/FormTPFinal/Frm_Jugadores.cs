@@ -17,12 +17,75 @@ namespace FormTPFinal
         /// <summary>
         /// Abre el formulario modal para crear un jugador
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btn_Alta_Click(object sender, EventArgs e)
         {
             Frm_AltaJugador form = new Frm_AltaJugador();
             form.ShowDialog();
+            this.LimpiarLista();
+            this.CargarLista();
+        }
+        /// <summary>
+        /// Guarda los jugadores existentes en el dtgv
+        /// </summary>
+        private void btn_Guardar_Click(object sender, EventArgs e)
+        {
+            string dniString;
+            List<Jugador> jugadoresFiltrados = new List<Jugador>();
+            Jugador jdr;
+            for (int i = 0; i < dtgv_Lista.Rows.Count; i++)
+            {
+                dniString = dtgv_Lista.Rows[i].Cells[3].Value.ToString();
+                if (dniString != null)
+                {
+                    jdr = Equipo.BuscarJdrPorDni(dniString);
+                    if (jdr != null)
+                    {
+                        jugadoresFiltrados.Add(jdr);
+                    }
+                }
+            }
+            Archivos<Jugador>.ListaJdrCsv(jugadoresFiltrados, this.cmb_FiltrarPor.Text);
+        }
+        /// <summary>
+        /// Elimina el jugador seleccionado en el dtgv
+        /// </summary>
+        private void btn_Eliminar_Click(object sender, EventArgs e)
+        {
+            Jugador jdr = this.ObtenerJugadorElegido();
+            if (jdr != null)
+            {
+                if (MessageBox.Show($"¿Esta seguro que desea eliminar al jugador {jdr.Nombre}?\n No se recuperaran los datos.", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    Equipo equipoDelJugador = Liga.ObtenerEquipo(jdr.Club);
+                    if (equipoDelJugador != null)
+                    {
+                        equipoDelJugador.EliminarJugador(jdr);
+                        Liga.GuardarCambios();
+                        this.LimpiarLista();
+                        this.CargarLista();
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// Abre el formulario de modificacion con los datos del jugador elegido en el dtgv
+        /// </summary>
+        private void btn_Modificar_Click(object sender, EventArgs e)
+        {
+            Jugador jugadorAModif = ObtenerJugadorElegido();
+            if (jugadorAModif != null)
+            {
+                Frm_ModificarJdr form = new Frm_ModificarJdr(jugadorAModif);
+                form.ShowDialog();
+                this.LimpiarLista();
+                this.CargarLista();
+            }
+        }
+        /// <summary>
+        /// Restaura la lista al estado original(sin filtrados)
+        /// </summary>
+        private void btn_Restaurar_Click(object sender, EventArgs e)
+        {
             this.LimpiarLista();
             this.CargarLista();
         }
@@ -308,6 +371,7 @@ namespace FormTPFinal
             }
         }
         #endregion
+
         /// <summary>
         /// Carga los datos de todos los jugadores al dtgv 
         /// </summary>
@@ -325,6 +389,7 @@ namespace FormTPFinal
                 }
             }
         }
+
         /// <summary>
         /// Elimina todos los datos de la lista
         /// </summary>
@@ -333,65 +398,7 @@ namespace FormTPFinal
             this.dtgv_Lista.Rows.Clear();
         }
 
-        /// <summary>
-        /// Restaura la lista al estado original(sin filtrados)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_Restaurar_Click(object sender, EventArgs e)
-        {
-            this.LimpiarLista();
-            this.CargarLista();
-        }
-
-        /// <summary>
-        /// Guarda los jugadores existentes en el dtgv
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_Guardar_Click(object sender, EventArgs e)
-        {
-            string dniString;
-            List<Jugador> jugadoresFiltrados = new List<Jugador>();
-            Jugador jdr;
-            for (int i = 0; i < dtgv_Lista.Rows.Count; i++)
-            {
-                dniString = dtgv_Lista.Rows[i].Cells[3].Value.ToString();
-                if(dniString != null)
-                {
-                    jdr = Equipo.BuscarJdrPorDni(dniString);
-                    if(jdr != null)
-                    {
-                        jugadoresFiltrados.Add(jdr);
-                    }                             
-                }
-            }
-              Archivos<Jugador>.ListaJdrCsv(jugadoresFiltrados, this.cmb_FiltrarPor.Text);
-        }
-        /// <summary>
-        /// Elimina el jugador seleccionado en el dtgv
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_Eliminar_Click(object sender, EventArgs e)
-        {
-            Jugador jdr = this.ObtenerJugadorElegido();
-            if (jdr != null)
-            {
-                if (MessageBox.Show($"¿Esta seguro que desea eliminar al jugador {jdr.Nombre}?\n No se recuperaran los datos.", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                {
-                    Equipo equipoDelJugador = Liga.ObtenerEquipo(jdr.Club);
-                    if (equipoDelJugador != null)
-                    {
-                        equipoDelJugador.EliminarJugador(jdr);
-                        this.LimpiarLista();
-                        this.CargarLista();
-                    }
-                }
-            }
-        }
-
-        /// <summary>
+       /// <summary>
         /// Obtiene el jugador elegido en el data griew list de la lista
         /// </summary>
         /// <returns>null si no es valido o el jugador si es valido</returns>
@@ -411,22 +418,5 @@ namespace FormTPFinal
             }
             return null;
         }
-        /// <summary>
-        /// Abre el formulario de modificacion con los datos del jugador elegido en el dtgv
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_Modificar_Click(object sender, EventArgs e)
-        {
-            Jugador jugadorAModif = ObtenerJugadorElegido();
-            if (jugadorAModif != null)
-            {
-                Frm_ModificarJdr form = new Frm_ModificarJdr(jugadorAModif);
-                form.ShowDialog();
-                this.LimpiarLista();
-                this.CargarLista();
-            }
-        }
-
     }
 }

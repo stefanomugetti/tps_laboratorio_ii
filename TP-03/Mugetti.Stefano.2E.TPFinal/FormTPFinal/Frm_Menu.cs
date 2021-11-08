@@ -28,7 +28,10 @@ namespace FormTPFinal
         private void btn_Salir_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("¿Esta seguro?", "Cerrar sesion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                Liga.GuardarCambios();
                 Application.Exit();
+            }
 
         }
         /// <summary>
@@ -60,7 +63,6 @@ namespace FormTPFinal
         /// <summary>
         /// Abre el form "Frm_Informes" en el panel
         /// </summary>
-
         private void btn_Informes_Click(object sender, EventArgs e)
         {
             Frm_Informes form = new Frm_Informes();
@@ -91,7 +93,6 @@ namespace FormTPFinal
             catch (Exception e)
             {
                 string log = e.Message;
-                Console.Beep();
             }
         }
     }

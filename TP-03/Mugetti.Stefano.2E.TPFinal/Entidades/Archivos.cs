@@ -200,14 +200,14 @@ namespace Entidades
         /// </summary>
         /// <param name="informe">informe a guardar en txt</param>
         /// <returns>true si lo guardo, de lo contrario false</returns>
-        public static bool Informes(string informe)
+        public static bool Informes(string informe,string tipoInforme)
         {
             if (informe != null)
             {
                 try
                 {
                     string folder = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\TP3\Informes\";
-                    string path = folder + "Informe_" + $"{numeroInforme}" + ".txt";
+                    string path = folder + "Informe_" + $"{tipoInforme}" + ".txt";
 
                     if (!Directory.Exists(folder))
                         Directory.CreateDirectory(folder);
@@ -226,7 +226,10 @@ namespace Entidades
             }
             return false;
         }
-
+        /// <summary>
+        /// Guarda un archivo txt para que quede asentado que el harcodeo ya fue realizado
+        /// </summary>
+        /// <returns>true si pudo crear el archivo, de lo contrario false</returns>
         public static bool DatosHarcodeados()
         {
             try

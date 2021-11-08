@@ -18,8 +18,6 @@ namespace FormTPFinal
         /// <summary>
         /// Abre el formulario modal para crear un equipo.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btn_Crear_Click(object sender, EventArgs e)
         {
             Frm_AltaEquipo form = new Frm_AltaEquipo();
@@ -30,40 +28,14 @@ namespace FormTPFinal
         /// <summary>
         /// Carga toda la lista completa
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btn_RestaurarLista_Click(object sender, EventArgs e)
         {
             this.LimpiarLista();
             this.CargarLista();
         }
-
-        /// <summary>
-        /// Carga el dtgv con los datos de los equipos
-        /// </summary>
-        private void CargarLista()
-        {
-            List<Equipo> equipos = Liga.ObtenerLista();
-            if (equipos != null)
-            {
-                foreach (Equipo item in equipos)
-                {
-                    this.dtgv_Lista.Rows.Add(item.Nombre, item.Valor.ToString(), item.AñoCreacion.ToString(), item.ObtenerCantJrs());
-                }
-            }
-        }
-        /// <summary>
-        /// Limpia todo el dtgv
-        /// </summary>
-        private void LimpiarLista()
-        {
-            this.dtgv_Lista.Rows.Clear();
-        }
         /// <summary>
         /// Abre el formulario modal de modificacion de equipo con los datos cargados
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btn_Modificar_Click(object sender, EventArgs e)
         {
             if (ObtenerEquipoElegido() != null)
@@ -74,28 +46,10 @@ namespace FormTPFinal
                 this.CargarLista();
             }
         }
-        /// <summary>
-        /// Busca el equipo elegido en el dtgv
-        /// </summary>
-        /// <returns></returns>
-        private Equipo ObtenerEquipoElegido()
-        {
-            if (Liga.ObtenerLista() != null)
-            {
-                string nombre = this.dtgv_Lista.CurrentRow.Cells[0].Value.ToString();//TOMA EL ID DEL RENGLON QUE SE SELECCIONE ([0])
-                Equipo equipo = Liga.ObtenerEquipo(nombre);
-                if (equipo != null)
-                {
-                    return equipo;
-                }
-            }
-            return null;
-        }
+
         /// <summary>
         /// Elimina el equipo y todos sus jugadores(seleccionado en el dtgv) 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btn_Elimina_Click(object sender, EventArgs e)
         {
             Equipo equipo = ObtenerEquipoElegido();
@@ -104,10 +58,40 @@ namespace FormTPFinal
                 if (MessageBox.Show($"¿Esta seguro que desea eliminar el equipo {equipo.Nombre}?\n No se recuperaran los datos.", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     Liga.EliminarEquipo(equipo);
+                    Liga.GuardarCambios();
                     this.LimpiarLista();
                     this.CargarLista();
                 }
             }
+        }
+        /// <summary>
+        /// Guarda los equipos existentes en el dtgv
+        /// </summary>
+        private void btn_Guardar_Click(object sender, EventArgs e)
+        {
+            string nombre;
+            List<Equipo> EquiposFiltrados = new List<Equipo>();
+            Equipo equipo;
+            for (int i = 0; i < dtgv_Lista.Rows.Count; i++)
+            {
+                nombre = dtgv_Lista.Rows[i].Cells[0].Value.ToString();
+                if (nombre != null)
+                {
+                    equipo = Liga.ObtenerEquipo(nombre);
+                    if (equipo != null)
+                    {
+                        EquiposFiltrados.Add(equipo);
+                    }
+                }
+            }
+            Archivos<Equipo>.ListaEquipoCsv(EquiposFiltrados, this.cmb_FiltrarPor.Text);
+        }
+        /// <summary>
+        /// Limpia todo el dtgv
+        /// </summary>
+        private void LimpiarLista()
+        {
+            this.dtgv_Lista.Rows.Clear();
         }
         #region Funcionalidad filtrados
 
@@ -218,28 +202,35 @@ namespace FormTPFinal
         }
         #endregion
         /// <summary>
-        /// Guarda los equipos existentes en el dtgv
+        /// Carga el dtgv con los datos de los equipos
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_Guardar_Click(object sender, EventArgs e)
+        private void CargarLista()
         {
-            string nombre;
-            List<Equipo> EquiposFiltrados = new List<Equipo>();
-            Equipo equipo;
-            for (int i = 0; i < dtgv_Lista.Rows.Count; i++)
+            List<Equipo> equipos = Liga.ObtenerLista();
+            if (equipos != null)
             {
-                nombre = dtgv_Lista.Rows[i].Cells[0].Value.ToString();
-                if (nombre != null)
+                foreach (Equipo item in equipos)
                 {
-                    equipo = Liga.ObtenerEquipo(nombre);
-                    if (equipo != null)
-                    {
-                        EquiposFiltrados.Add(equipo);
-                    }
+                    this.dtgv_Lista.Rows.Add(item.Nombre, item.Valor.ToString(), item.AñoCreacion.ToString(), item.ObtenerCantJrs());
                 }
             }
-            Archivos<Equipo>.ListaEquipoCsv(EquiposFiltrados, this.cmb_FiltrarPor.Text);
-        }   
+        }
+        /// <summary>
+        /// Busca el equipo elegido en el dtgv
+        /// </summary>
+        /// <returns>El equipo elegido, de lo contrario null</returns>
+        private Equipo ObtenerEquipoElegido()
+        {
+            if (Liga.ObtenerLista() != null && dtgv_Lista.Rows.Count > 0)
+            {
+                string nombre = this.dtgv_Lista.CurrentRow.Cells[0].Value.ToString();//TOMA EL ID DEL RENGLON QUE SE SELECCIONE ([0])
+                Equipo equipo = Liga.ObtenerEquipo(nombre);
+                if (equipo != null)
+                {
+                    return equipo;
+                }
+            }
+            return null;
+        }
     }
 }

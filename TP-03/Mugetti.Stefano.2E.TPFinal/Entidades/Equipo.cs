@@ -48,7 +48,6 @@ namespace Entidades
             return false;
         }
 
-
         public List<Jugador> ObtenerListaJugadores()
         {
             return jugadores;
@@ -74,7 +73,7 @@ namespace Entidades
         {
             if (!String.IsNullOrEmpty(dniString) && long.TryParse(dniString, out long dni))
             {
-                List<Equipo> equipos = Liga.ObtenerLista();              
+                List<Equipo> equipos = Liga.ObtenerLista();
                 if (equipos != null)
                 {
                     foreach (Equipo item in equipos)
@@ -98,19 +97,15 @@ namespace Entidades
         /// <summary>
         /// Obtiene la cantidad de jugadores del equipo pasado como instancia
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Cantidad de jugadores(int)</returns>
         public int ObtenerCantJrs()
         {
-            if (jugadores.Count > 0)
-            {
-                return jugadores.Count;
-            }
-            return 0;
+            return jugadores.Count;
         }
         /// <summary>
         /// Devuelve lista de todos los jugadores existentes
         /// </summary>
-        /// <returns>Return retorna la lista con los jugadores</returns>
+        /// <returns> lista con los jugadores</returns>
         public static List<Jugador> ObtenerTodosLosJugadores()
         {
             List<Equipo> equipos = Liga.ObtenerLista();
@@ -128,14 +123,11 @@ namespace Entidades
             }
             return listaTodosJugadores;
         }
+
         /// <summary>
-        /// Obtiene la cantidad total numerica de jugadores todos los equipos
+        /// Agrega los jugadores de una lista a su equipo correspondiente
         /// </summary>
-        /// <returns></returns>
-        public static int ObtenerTotalJgdrsInt()
-        {
-            return ObtenerTodosLosJugadores().Count;
-        }
+        /// <param name="jugadores">lista a analizar</param>
         public static void AgregarJugadores(List<Jugador> jugadores)
         {
             List<Equipo> equipos = Liga.ObtenerLista();
@@ -153,11 +145,5 @@ namespace Entidades
                 }
             }
         }
-
-        public static bool EliminarJugador()
-        {
-            return false;
-        }
-
     }
 }

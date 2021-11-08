@@ -120,7 +120,7 @@ namespace FormTPFinal
             this.btn_Liga.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
             this.btn_Liga.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Liga.ForeColor = System.Drawing.Color.White;
-            this.btn_Liga.Image = ((System.Drawing.Image)(resources.GetObject("btn_Liga.Image")));
+            this.btn_Liga.Image = global::FormTPFinal.Properties.Resources.entidades;
             this.btn_Liga.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_Liga.Location = new System.Drawing.Point(-2, 153);
             this.btn_Liga.Name = "btn_Liga";

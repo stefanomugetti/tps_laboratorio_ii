@@ -38,7 +38,8 @@ namespace FormTPFinal
                     {
                         equipoAModificar.Nombre = nombre;
                         equipoAModificar.Valor = valor;
-                        equipoAModificar.AñoCreacion = añoCreacion;                                              
+                        equipoAModificar.AñoCreacion = añoCreacion;
+                        Console.Beep();
                     }
                     else
                         MessageBox.Show($"El equipo con el nombre {this.txt_Nombre.Text} ya existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -14,7 +14,7 @@ namespace Entidades
         /// Valida que la cadena pasada por parametro sea un dni valido
         /// </summary>
         /// <param name="dni">Cadena a validar</param>
-        /// <returns>False si no es valido, true si es valido</returns>
+        /// <returns>true si es valido, de lo contario false</returns>
         public static bool DniValido(long dni)
         {
             string dniString = dni.ToString();
@@ -75,7 +75,7 @@ namespace Entidades
         /// Valida que la cadena parsada por parametro sea un pie habil valido
         /// </summary>
         /// <param name="pieHabil">cadena a analizar</param>
-        /// <returns>return retorna true si es valido, de lo contrario false</returns>
+        /// <returns>true si es valido, de lo contrario false</returns>
         public static bool PieHabilValido(string pieHabil)
         {
             if (pieHabil.ToLower() == "izquierdo" || pieHabil.ToLower() == "derecho")
@@ -87,7 +87,7 @@ namespace Entidades
         /// Valida que la cadena pasada por parametr sea una posicion valida
         /// </summary>
         /// <param name="posicion">cadena a validar</param>
-        /// <returns>retur retorna true si es valido, de lo contrario false</returns>
+        /// <returns>true si es valido, de lo contrario false</returns>
         public static bool PosicionValida(string posicion)
         {
             if (posicion.ToLower() == "arquero" || posicion.ToLower() == "defensa" || posicion.ToLower() == "delantero" || posicion.ToLower() == "mediocampista")
@@ -99,7 +99,7 @@ namespace Entidades
         /// Valida que el valor pasado por parametro del jugador sea valido
         /// </summary>
         /// <param name="valor">valor a validar</param>
-        /// <returns>return retorna true si es valido, de lo contrario false</returns>
+        /// <returns>true si es valido, de lo contrario false</returns>
         public static bool ValorValido(double valor)
         {
             if (valor > 100.1 && valor < 900000000.1)
@@ -114,7 +114,7 @@ namespace Entidades
         /// Valida que el año de creacion pasado por parametro sea valido
         /// </summary>
         /// <param name="año">(int)año a validar</param>
-        /// <returns>return retorna true si es valido, de lo contrario false</returns>
+        /// <returns>true si es valido, de lo contrario false</returns>
         public static bool AñoCreacionValido(int año)
         {
             if (año > 1820 && año < 2021)
@@ -126,7 +126,7 @@ namespace Entidades
         /// Valida que el valor pasado por parametro del equipo sea valido
         /// </summary>
         /// <param name="valor">valor a validar</param>
-        /// <returns>return retorna true si es valido, de lo contrario false</returns>
+        /// <returns>true si es valido, de lo contrario false</returns>
         public static bool ValorEquipoValido(double valor)
         {
             if (valor > 1000000.1 && valor < 30000000000.1)
@@ -143,9 +143,7 @@ namespace Entidades
         {
             return Liga.ObtenerLista().Contains(club);
         }
-        #endregion
 
-        #region Validaciones Generales
         //usada para nombres y apellidos
         /// <summary>
         /// Valida que la cadena pasada por parametro sea un solo letras
@@ -164,7 +162,5 @@ namespace Entidades
             return true;
         }
         #endregion
-
-
     }
 }
