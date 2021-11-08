@@ -22,25 +22,34 @@ namespace FormTPFinal
                 if (double.TryParse(this.txt_Valor.Text, out double valor) && int.TryParse(this.txt_AñoCreacion.Text, out int añoCreacion))
                 {
                     string nombre = this.txt_Nombre.Text;
-                    if (Validaciones.SoloString(nombre) && Validaciones.ValorEquipoValido(valor) && Validaciones.AñoCreacionValido(añoCreacion))
+                    if (Validaciones.SoloString(nombre))
                     {
-                        if (!Liga.EquipoRepetido(nombre))
+                        if (Validaciones.ValorEquipoValido(valor))
                         {
-                            if (Liga.AgregarEquipo(new Equipo(nombre, valor, añoCreacion)))
+                            if (Validaciones.AñoCreacionValido(añoCreacion))
                             {
-                                Console.Beep();
-                                this.Close();
-                            }                           
+                                if (!Liga.EquipoRepetido(nombre))
+                                {
+                                    if (Liga.AgregarEquipo(new Equipo(nombre, valor, añoCreacion)))
+                                    {
+                                        Console.Beep();
+                                        this.Close();
+                                    }
+                                }
+                                else
+                                    MessageBox.Show($"El equipo con el nombre {this.txt_Nombre.Text} ya existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            else
+                                MessageBox.Show("Año de creacion invalido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         else
-                            MessageBox.Show($"El equipo con el nombre {this.txt_Nombre.Text} ya existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Valor invalido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
-                        MessageBox.Show("Datos invalidos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Nombre invalido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
-                    MessageBox.Show("Valor o año de creacion invalidos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                    MessageBox.Show("Datos invalidos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception)
             {

@@ -118,6 +118,7 @@ namespace FormTPFinal
             this.clm_Precio});
             this.dtgv_ListaJdr.Location = new System.Drawing.Point(-4, 138);
             this.dtgv_ListaJdr.Name = "dtgv_ListaJdr";
+            this.dtgv_ListaJdr.ReadOnly = true;
             this.dtgv_ListaJdr.RowHeadersVisible = false;
             this.dtgv_ListaJdr.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
             this.dtgv_ListaJdr.RowTemplate.Height = 25;
@@ -128,26 +129,31 @@ namespace FormTPFinal
             // 
             this.clm_Nombre.HeaderText = " NOMBRE";
             this.clm_Nombre.Name = "clm_Nombre";
+            this.clm_Nombre.ReadOnly = true;
             // 
             // clm_Posicio
             // 
             this.clm_Posicio.HeaderText = "POSICION";
             this.clm_Posicio.Name = "clm_Posicio";
+            this.clm_Posicio.ReadOnly = true;
             // 
             // cl_Edad
             // 
             this.cl_Edad.HeaderText = "EDAD";
             this.cl_Edad.Name = "cl_Edad";
+            this.cl_Edad.ReadOnly = true;
             // 
             // cl_Equipo
             // 
             this.cl_Equipo.HeaderText = "EQUIPO";
             this.cl_Equipo.Name = "cl_Equipo";
+            this.cl_Equipo.ReadOnly = true;
             // 
             // clm_Precio
             // 
             this.clm_Precio.HeaderText = "VALOR";
             this.clm_Precio.Name = "clm_Precio";
+            this.clm_Precio.ReadOnly = true;
             // 
             // textBox2
             // 

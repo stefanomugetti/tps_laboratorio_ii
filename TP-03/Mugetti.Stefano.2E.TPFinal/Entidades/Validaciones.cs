@@ -153,6 +153,10 @@ namespace Entidades
         public static bool SoloString(string cadena)
         {
             char letra = 'x';
+
+            if (String.IsNullOrEmpty(cadena))
+                return false;
+
             for (int i = 0; i < cadena.Length; i++)
             {
                 letra = cadena[i];
